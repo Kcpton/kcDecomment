@@ -137,17 +137,16 @@ int main() {
                 state = handleForward(ch);
                 break;
             case COMMENT:
+                enteredline = lineNum;
                 state = handleComment(ch);
                 break;
             case STAR:
                 state = handleStar(ch);
                 break;
             case SINGLE:
-                enteredline = lineNum;
                 state = handleSingle(ch);
                 break;
             case DOUBLE:
-                enteredline = lineNum;
                 state = handleDouble(ch);
                 break;
             case SINGLE_BACK:
