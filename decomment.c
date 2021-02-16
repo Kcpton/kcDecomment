@@ -121,6 +121,7 @@ enum Statetype handleDoubleBack(char ch) {
 int main() {
     int ch;
     int lineNum = 1;
+    int enteredline = 0;
     ch = getchar();
     enum Statetype state = START;
     while (ch != EOF)
@@ -142,9 +143,11 @@ int main() {
                 state = handleStar(ch);
                 break;
             case SINGLE:
+                enteredline = lineNum;
                 state = handleSingle(ch);
                 break;
             case DOUBLE:
+                enteredline = lineNum;
                 state = handleDouble(ch);
                 break;
             case SINGLE_BACK:
@@ -157,7 +160,7 @@ int main() {
         ch = getchar();
     }
     if (state == COMMENT || state == STAR) {
-        fprintf(stderr, "Error: line %d: unterminated comment\n", lineNum);
+        fprintf(stderr, "Error: line %d: unterminated comment\n", enteredline);
         return(EXIT_FAILURE);
     }
     else if (state == FORWARD) {
