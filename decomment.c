@@ -156,6 +156,7 @@ int main() {
     }
     if (state == COMMENT || state == STAR) {
         fprintf(stderr, "Error: line %d: unterminated comment", lineNum);
+        return(EXIT_FAILURE);
     }
     else if (state == FORWARD) {
         putchar('/');
