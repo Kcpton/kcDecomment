@@ -1,14 +1,12 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <ctype.h>
 
 /* name of all my states */
 enum Statetype {START, FORWARD, COMMENT, STAR, SINGLE, 
                 DOUBLE, SINGLE_BACK, DOUBLE_BACK};
 
-/* exit failure is defined as 1 */
-int EXIT_FAILURE = 1;
-
-/* handleStart Function takes in a char c, returns a state 
+/*  handleStart Function takes in a char ch, returns a state
     based on input*/
 enum Statetype handleStart(char ch) {
     if (ch == '/') {
@@ -28,7 +26,7 @@ enum Statetype handleStart(char ch) {
     }
 }
 
-/* handleForward Function takes in a char c, returns a state 
+/* handleForward Function takes in a char ch, returns a state 
     based on input*/
 enum Statetype handleForward(char ch) {
     if (ch == '/') {
@@ -56,7 +54,7 @@ enum Statetype handleForward(char ch) {
     }
 }
 
-/* handleComment takes in a char c, returns a state 
+/* handleComment takes in a char ch, returns a state 
     based on input*/
 enum Statetype handleComment(char ch) {
     if (ch == '*') {
@@ -71,7 +69,7 @@ enum Statetype handleComment(char ch) {
     }
 }
 
-/* handleStar takes in a char c, returns a state 
+/* handleStar takes in a char ch, returns a state 
     based on input*/
 enum Statetype handleStar(char ch) {
     if (ch == '*') {
@@ -89,7 +87,7 @@ enum Statetype handleStar(char ch) {
     }
 }
 
-/* handleSingle takes in a char c, returns a state 
+/* handleSingle takes in a char ch, returns a state 
     based on input*/
 enum Statetype handleSingle(char ch) {
     putchar(ch);
@@ -104,14 +102,14 @@ enum Statetype handleSingle(char ch) {
     }
 }
 
-/* handleSingleBack takes in a char c, returns a state 
+/* handleSingleBack takes in a char ch, returns a state 
     called SINGLE */
 enum Statetype handleSingleBack(char ch) {
     putchar(ch);
     return SINGLE;
 }
 
-/* handleDouble takes in a char c, returns a state 
+/* handleDouble takes in a char ch, returns a state 
     based on input */
 enum Statetype handleDouble(char ch) {
     putchar(ch);
@@ -126,7 +124,7 @@ enum Statetype handleDouble(char ch) {
     }
 }
 
-/* handleDoubleBack takes in a char c, returns a state
+/* handleDoubleBack takes in a char ch, returns a state
     called DOUBLE */
 enum Statetype handleDoubleBack(char ch) {
     putchar(ch);
@@ -134,7 +132,12 @@ enum Statetype handleDoubleBack(char ch) {
 }
 
 /* 
-
+    main takes a standard file input and deletes the comments off. 
+    It places a space in front of the comment. The line spacing 
+    is preserved. If the comment does not close, an error statement 
+    is thrown into an error file with the line number of the starting
+    comment. Returns EXIT_FAILURE if comment doesn't close. 
+    Returns 0 otherwise.
 */
 int main() {
     int ch;
