@@ -1,0 +1,37 @@
+START (accept) <-- (start here)
+    /: FORWARD
+    ': SINGLE
+    ": DOUBLE
+    OTHER: START
+
+FOWARD (accept):
+    /: FORWARD
+    *: COMMENT
+    ": DOUBLE
+    ': SINGLE
+    OTHER: START
+
+COMMENT (reject):
+    *: STAR
+    OTHER: COMMENT
+
+STAR (reject):
+    *: STAR
+    /: START
+    OTHER: COMMENT
+
+SINGLE (accept):
+    ': START
+    \: SINGLE_BACK
+    OTHER: SINGLE
+
+DOUBLE (accept):
+    ": START
+    \: BACK
+    OTHER: DOUBLE
+
+SINGLE_BACK (accept):
+    OTHER: SINGLE
+
+DOUBLE_BACK (accept):
+    OTHER: DOUBLE
