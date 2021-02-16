@@ -30,6 +30,16 @@ enum Statetype handleForward(char ch) {
         putchar(' ');
         return COMMENT;
     }
+    else if (ch == '"') {
+        putchar('/');
+        putchar(ch);
+        return DOUBLE;
+    }
+    else if (ch = '\'') {
+        putchar('/');
+        putchar(ch);
+        return SINGLE;
+    }
     else {
         putchar('/');
         putchar(ch);
