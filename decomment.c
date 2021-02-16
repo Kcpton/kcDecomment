@@ -129,6 +129,10 @@ int main() {
         if (ch == '\n') {
             lineNum += 1;
         }
+        if (state != COMMENT) {
+            enteredline = lineNum;
+        }
+        
         switch (state) {
             case START:
                 state = handleStart(ch);
@@ -137,7 +141,6 @@ int main() {
                 state = handleForward(ch);
                 break;
             case COMMENT:
-                enteredline = lineNum;
                 state = handleComment(ch);
                 break;
             case STAR:
