@@ -129,7 +129,7 @@ int main() {
         if (ch == '\n') {
             lineNum += 1;
         }
-        if (state != COMMENT) {
+        if (state != COMMENT && state != STAR) {
             enteredline = lineNum;
         }
         
