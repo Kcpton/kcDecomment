@@ -141,7 +141,8 @@ int main() {
     int lineNum = 1;
     int enteredline = 0;
     ch = getchar();
-    enum Statetype state = START;
+    enum Statetype state;
+    state = START;
     while (ch != EOF)
     {
         if (ch == '\n') {
