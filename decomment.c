@@ -54,7 +54,7 @@ enum Statetype handleStar(char ch) {
     if (ch == '*') {
         return STAR;
     }
-    if (ch == '\\') {
+    if (ch == '/') {
         return START;
     }
     else if (ch == '\n') {
