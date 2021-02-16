@@ -35,7 +35,7 @@ enum Statetype handleForward(char ch) {
         putchar(ch);
         return DOUBLE;
     }
-    else if (ch = '\'') {
+    else if (ch == '\'') {
         putchar('/');
         putchar(ch);
         return SINGLE;
