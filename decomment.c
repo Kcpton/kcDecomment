@@ -3,6 +3,8 @@
 enum Statetype {START, FORWARD, COMMENT, STAR, SINGLE, 
                 DOUBLE, SINGLE_BACK, DOUBLE_BACK};
 
+int EXIT_FAILURE = 1;
+
 enum Statetype handleStart(char ch) {
     if (ch == '/') {
         return FORWARD;
