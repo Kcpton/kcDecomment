@@ -1,10 +1,15 @@
 #include <stdio.h>
 #include <ctype.h>
+
+/* name of all my states */
 enum Statetype {START, FORWARD, COMMENT, STAR, SINGLE, 
                 DOUBLE, SINGLE_BACK, DOUBLE_BACK};
 
+/* exit failure is defined as 1 */
 int EXIT_FAILURE = 1;
 
+/* handleStart Function takes in a char c, returns a state 
+    based on input*/
 enum Statetype handleStart(char ch) {
     if (ch == '/') {
         return FORWARD;
@@ -23,6 +28,8 @@ enum Statetype handleStart(char ch) {
     }
 }
 
+/* handleForward Function takes in a char c, returns a state 
+    based on input*/
 enum Statetype handleForward(char ch) {
     if (ch == '/') {
         putchar(ch);
@@ -49,6 +56,8 @@ enum Statetype handleForward(char ch) {
     }
 }
 
+/* handleComment takes in a char c, returns a state 
+    based on input*/
 enum Statetype handleComment(char ch) {
     if (ch == '*') {
         return STAR;
@@ -62,6 +71,8 @@ enum Statetype handleComment(char ch) {
     }
 }
 
+/* handleStar takes in a char c, returns a state 
+    based on input*/
 enum Statetype handleStar(char ch) {
     if (ch == '*') {
         return STAR;
@@ -78,46 +89,53 @@ enum Statetype handleStar(char ch) {
     }
 }
 
+/* handleSingle takes in a char c, returns a state 
+    based on input*/
 enum Statetype handleSingle(char ch) {
+    putchar(ch);
     if (ch == '\'') {
-        putchar(ch);
         return START;
     }
     else if (ch == '\\') {
-        putchar(ch);
         return SINGLE_BACK;
     }
     else {
-        putchar(ch);
         return SINGLE;
     }
 }
 
+/* handleSingleBack takes in a char c, returns a state 
+    called SINGLE */
 enum Statetype handleSingleBack(char ch) {
     putchar(ch);
     return SINGLE;
 }
 
+/* handleDouble takes in a char c, returns a state 
+    based on input */
 enum Statetype handleDouble(char ch) {
+    putchar(ch);
     if (ch == '"') {
-        putchar(ch);
         return START;
     }
     else if (ch == '\\') {
-        putchar(ch);
         return DOUBLE_BACK;
     }
     else {
-        putchar(ch);
         return DOUBLE;
     }
 }
 
+/* handleDoubleBack takes in a char c, returns a state
+    called DOUBLE */
 enum Statetype handleDoubleBack(char ch) {
     putchar(ch);
     return DOUBLE;
 }
 
+/* 
+
+*/
 int main() {
     int ch;
     int lineNum = 1;
@@ -162,7 +180,8 @@ int main() {
         ch = getchar();
     }
     if (state == COMMENT || state == STAR) {
-        fprintf(stderr, "Error: line %d: unterminated comment\n", enteredline);
+        fprintf(stderr, "Error: line %d: unterminated comment\n", 
+        enteredline);
         return(EXIT_FAILURE);
     }
     else if (state == FORWARD) {
